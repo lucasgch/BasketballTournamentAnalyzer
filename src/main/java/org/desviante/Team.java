@@ -47,4 +47,10 @@ public class Team {
             player.printPlayer();
         }
     }
+
+    @Override
+    public String toString() {
+        return "Team name: " + name + '\'' +
+                ", Conference: " + conference;
+    }
 }

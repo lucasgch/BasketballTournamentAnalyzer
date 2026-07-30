@@ -66,7 +66,10 @@ public class Main {
     // Method to print teams data
     public static void printTeamsData(List<Team> teams) {
         for (Team team : teams) {
-            team.printTeamData();
+            System.out.println("-".repeat(56));
+            System.out.println(team.toString());
+            System.out.println("-".repeat(56));
+            team.players.forEach(Player::printPlayer);
         }
     }
 }
