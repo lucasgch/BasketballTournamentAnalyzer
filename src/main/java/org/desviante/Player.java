@@ -21,18 +21,22 @@ public class Player {
         return number;
     }
 
-    public static List<Player> populatePlayer(String[][] playerData) {
+    public static List<Player> populatePlayer(String[][] playerData, int teamCounter) {
         List<Player> players = new ArrayList<>();
         for (String[] data : playerData) {
-            String name = data[0];
-            int number = Integer.parseInt(data[1]);
-            Player player = new Player(name, number);
-            players.add(player);
+            // Only process players that belong to the current team
+            if (Integer.parseInt(data[0]) == teamCounter) {
+                String name = data[1];                    // Name is at index 1
+                int number = Integer.parseInt(data[2]);   // Number is at index 2
+
+                Player player = new Player(name, number);
+                players.add(player);
+            }
         }
         return players;
     }
 
     public void printPlayer() {
-        System.out.println("Player Name: " + this.getName() + ", Player Number: " + this.getNumber());
+        System.out.printf("--- Player Name: %s, Player Number: %d%n", this.getName(), this.getNumber());
     }
 }

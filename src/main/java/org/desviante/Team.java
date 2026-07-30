@@ -3,6 +3,8 @@ package org.desviante;
 import java.util.ArrayList;
 import java.util.List;
 
+import static org.desviante.Main.teams;
+
 public class Team {
     private String name;
     private String conference;
@@ -35,5 +37,14 @@ public class Team {
 
     public void addPlayer(Player player){
         players.add(player);
+    }
+
+    public void printTeamData() {
+        System.out.println(("-").repeat(55));
+        System.out.printf("Team name: %s, Conference: %s%n", this.name, this.conference);
+        System.out.println(("-").repeat(55));
+        for (Player player : this.players) {
+            player.printPlayer();
+        }
     }
 }
