@@ -7,12 +7,18 @@ import java.util.ArrayList;
 
 public class Main {
     public static List<Team> teams = new ArrayList<>();
+    public static List<Game> games = new ArrayList<>();
 
     public static void main(String[] args) {
         List<Team> teams = createTeams();
 
         // Print teams data
         printTeamsData(teams);
+
+        games = createGame(teams);
+
+        printGames(games);
+
     }
 
     public static List<Team> createTeams() {
@@ -62,6 +68,15 @@ public class Main {
         return players;
     }
 
+    public static List<Game> createGame(List<Team> teams){
+        // Define game data
+        String[][] gameData = {
+                {String.valueOf(1), "2001-06-06", "0", "1", String.valueOf(18997)}
+        };
+        games = Game.populateGames(teams, gameData);
+        return games;
+    }
+
 
     // Method to print teams data
     public static void printTeamsData(List<Team> teams) {
@@ -70,6 +85,12 @@ public class Main {
             System.out.println(team.toString());
             System.out.println("-".repeat(56));
             team.players.forEach(Player::printPlayer);
+        }
+    }
+
+    public static void printGames (List<Game> games){
+        for (Game game : games) {
+            game.printGameDetails();
         }
     }
 }

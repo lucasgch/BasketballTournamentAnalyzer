@@ -3,24 +3,56 @@ package org.desviante;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Classe que define um jogador
+ *
+ */
 public class Player {
+    /**
+     * Define o nome do Jogador
+     */
     private String name;
+    /**
+     * Define o número do Jogador
+     */
     private int number;
-    private ArrayList<Player> roster;
 
+    /**
+     * Construtor que cria um jogador a partir do Nome e Número
+     * @param name Nome do jogador
+     * @param number Número do jogador
+     */
     public Player(String name, int number) {
         this.name = name;
         this.number = number;
     }
 
+    /**
+     * Obtém o nome do jogador
+     * @return Nome do Jogador
+     */
     public String getName() {
         return name;
     }
 
+    /**
+     * Obtém o número do jogador
+     * @return Número do Jogador
+     */
     public int getNumber() {
         return number;
     }
 
+    /**
+     * Popular uma lista de Jogadores a partir dos dados dos jogadores e número do time
+     * @param playerData Array de strings contendo os dados dos jogadores
+     * Contendo:
+     *      data[0] o índice do time do qual serão selecionados os jogadores
+     *      data[1] o nome de cada jogador do time selecionado
+     *      data[2] o número de cada jogador do time selecionado
+     * @param teamCounter Número do time
+     * @return Lista de jogadores
+     */
     public static List<Player> populatePlayer(String[][] playerData, int teamCounter) {
         List<Player> players = new ArrayList<>();
         for (String[] data : playerData) {
@@ -36,6 +68,9 @@ public class Player {
         return players;
     }
 
+    /**
+     * Imprime um jogador com nome e número
+     */
     public void printPlayer() {
         System.out.printf("--- Player Name: %s, Player Number: %d%n", this.getName(), this.getNumber());
     }

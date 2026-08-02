@@ -1,6 +1,5 @@
 package org.desviante;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -8,13 +7,13 @@ import java.util.Objects;
 
 public class Game {
     private final int gameNumber;
-    private final LocalDate date;
+    private final String date;
     private final Team homeTeam;
     private final Team awayTeam;
     private final int attendance;
     private final List<PlayerGameStats> playerGameStats;
 
-    public Game(int gameNumber, LocalDate date, Team homeTeam, Team awayTeam, int attendance) {
+    public Game(int gameNumber, String date, Team homeTeam, Team awayTeam, int attendance) {
         this.gameNumber = gameNumber;
         this.date = Objects.requireNonNull(date, "Date cannot be null");
         this.homeTeam = Objects.requireNonNull(homeTeam, "Home team cannot be null");
@@ -28,7 +27,7 @@ public class Game {
         return gameNumber;
     }
 
-    public LocalDate getDate() {
+    public String getDate() {
         return date;
     }
 
@@ -53,6 +52,34 @@ public class Game {
         if (stats != null) {
             this.playerGameStats.add(stats);
         }
+    }
+
+
+        public static List<Game> populateGames(List<Team> teams, String[][] gameData) {
+            List<Game> games = new ArrayList<>();
+            for (String[] data : gameData) {
+                int gameNumber = Integer.parseInt(data[0]); // Game number
+                String date = data[1]; // Game date
+                Team homeTeam = teams.get(Integer.parseInt(data[2])); // Get home team
+                Team awayTeam = teams.get(Integer.parseInt(data[3])); // Get away team
+                int attendance = Integer.parseInt(data[4]); // Attendance
+                // Create and add game to list
+                Game game = new Game(gameNumber, date, homeTeam, awayTeam, attendance);
+                games.add(game);
+            }
+            return games;
+        }
+
+    public void printGameDetails() {
+        System.out.println("Game #" + gameNumber);
+        System.out.println("Date: " + date);
+        System.out.println("Attendance: " + attendance);
+
+        //System.out.print("Home Team:");
+        Team.printTeamData(homeTeam);
+
+        //System.out.print("Away Team:");
+        Team.printTeamData(awayTeam);
     }
 
     @Override
