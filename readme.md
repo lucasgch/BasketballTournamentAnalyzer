@@ -94,7 +94,7 @@ Este projeto permitiu consolidar conceitos fundamentais do desenvolvimento em Ja
 
 1. **Clone o repositório:**
 ```bash
-git clone https://github.com/seu-usuario/basketball-tournament-analyzer.git
+git clone https://github.com/lucasgch/basketball-tournament-analyzer.git
 cd basketball-tournament-analyzer
 ```
 
