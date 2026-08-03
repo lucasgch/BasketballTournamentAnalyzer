@@ -5,14 +5,44 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
+/**
+ * Classe que define um jogo de basquete
+ */
 public class Game {
+    /**
+     * Número do jogo
+     */
     private final int gameNumber;
+    /**
+     * Data do jogo em formato
+     */
     private final String date;
+    /**
+     * Time de casa
+     */
     private final Team homeTeam;
+    /**
+     * Time visitante
+     */
     private final Team awayTeam;
+    /**
+     * Público presente
+     */
     private final int attendance;
+    /**
+     * Lista de estatísticas dos jogadores
+     */
     private final List<PlayerGameStats> playerGameStats;
 
+    /**
+     * Construtor que cria um jogo a partir dos dados
+     *
+     * @param gameNumber número do jogo
+     * @param date       data do jogo
+     * @param homeTeam   time de casa
+     * @param awayTeam   time visitante
+     * @param attendance público presente
+     */
     public Game(int gameNumber, String date, Team homeTeam, Team awayTeam, int attendance) {
         this.gameNumber = gameNumber;
         this.date = Objects.requireNonNull(date, "Date cannot be null");
@@ -23,53 +53,97 @@ public class Game {
     }
 
     // Getters
+
+    /**
+     * Retorna o número do jogo
+     *
+     * @return gameNumber
+     */
     public int getGameNumber() {
         return gameNumber;
     }
 
+    /**
+     * Retorna a data do jogo
+     *
+     * @return date
+     */
     public String getDate() {
         return date;
     }
 
+    /**
+     * Retorna o time de casa
+     *
+     * @return homeTeam
+     */
     public Team getHomeTeam() {
         return homeTeam;
     }
 
+    /**
+     * Retorna o time visitante
+     *
+     * @return awayTeam
+     */
     public Team getAwayTeam() {
         return awayTeam;
     }
 
+    /**
+     * Retorna o público presente
+     *
+     * @return attendance
+     */
     public int getAttendance() {
         return attendance;
     }
 
+    /**
+     * Retorna a lista com as estatísticas dos jogadores durante o jogo
+     *
+     * @return
+     */
     public List<PlayerGameStats> getPlayerGameStats() {
         return Collections.unmodifiableList(playerGameStats);
     }
 
     // Helper method to add player stats safely
+
+    /**
+     * Adicionar as estatísticas de um jogador
+     * @param stats
+     */
     public void addPlayerGameStats(PlayerGameStats stats) {
         if (stats != null) {
             this.playerGameStats.add(stats);
         }
     }
 
-
-        public static List<Game> populateGames(List<Team> teams, String[][] gameData) {
-            List<Game> games = new ArrayList<>();
-            for (String[] data : gameData) {
-                int gameNumber = Integer.parseInt(data[0]); // Game number
-                String date = data[1]; // Game date
-                Team homeTeam = teams.get(Integer.parseInt(data[2])); // Get home team
-                Team awayTeam = teams.get(Integer.parseInt(data[3])); // Get away team
-                int attendance = Integer.parseInt(data[4]); // Attendance
-                // Create and add game to list
-                Game game = new Game(gameNumber, date, homeTeam, awayTeam, attendance);
-                games.add(game);
-            }
-            return games;
+    /**
+     * Popular uma lista de jogos a partir de
+     * @param teams uma lista de times
+     * @param gameData os dados dos jogos
+     * @return uma lista de jogos
+     */
+    public static List<Game> populateGames(List<Team> teams, String[][] gameData) {
+        List<Game> games = new ArrayList<>();
+        for (String[] data : gameData) {
+            int gameNumber = Integer.parseInt(data[0]); // Game number
+            String date = data[1]; // Game date
+            Team homeTeam = teams.get(Integer.parseInt(data[2])); // Get home team
+            Team awayTeam = teams.get(Integer.parseInt(data[3])); // Get away team
+            int attendance = Integer.parseInt(data[4]); // Attendance
+            // Create and add game to list
+            Game game = new Game(gameNumber, date, homeTeam, awayTeam, attendance);
+            games.add(game);
         }
+        return games;
+    }
 
+    /**
+     * Imprime os detalhes do Jogo
+     */
     public void printGameDetails() {
         System.out.println("Game #" + gameNumber);
         System.out.println("Date: " + date);
@@ -82,6 +156,10 @@ public class Game {
         Team.printTeamData(awayTeam);
     }
 
+    /**
+     * Converte o objeto Jogo para o formato string
+     * @return Uma string com os dados do jogo, número, data, público, time de casa e time visitante
+     */
     @Override
     public String toString() {
         return String.format(
