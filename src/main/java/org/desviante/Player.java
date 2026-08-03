@@ -5,7 +5,6 @@ import java.util.List;
 
 /**
  * Classe que define um jogador
- *
  */
 public class Player {
     /**

@@ -3,25 +3,57 @@ package org.desviante;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Classe que define um time
+ */
 public class Team {
+    /**
+     * Nome do jogador
+     */
     private String name;
+    /**
+     * Nome da conferência do time
+     */
     private String conference;
+    /**
+     * Lista de jogadores do time
+     */
     List<Player> players;
 
+    /**
+     * Construtor que cria um time com um Nome, Conferência e lista vazia de jogadores
+     * @param name do time
+     * @param conference do time
+     */
     public Team(String name, String conference) {
         this.name = name;
         this.conference = conference;
         players = new ArrayList<>();
     }
 
+    /**
+     * Retorna o nome do time
+     * @return name
+     */
     public String getName() {
         return name;
     }
 
+    /**
+     * Retorna o nome da conferência do time
+     * @return conference
+     */
     public String getConference() {
         return conference;
     }
 
+    /**
+     * Popular uma lista de times a partir dos dados dos times
+     * @param teamData Array de Strings contendo:
+     *      data[0]: Nome do time
+     *      data[1]: Nome da conferência do time
+     * @return Lista de times criados
+     */
     public static List<Team> populateTeams(String[][] teamData) {
         List<Team> teams = new ArrayList<>();
         for (String[] data : teamData) {
@@ -33,10 +65,18 @@ public class Team {
         return teams;
     }
 
+    /**
+     * Adiciona um jogador ao time
+     * @param player
+     */
     public void addPlayer(Player player){
-        players.add(player);
+        this.players.add(player);
     }
 
+    /**
+     * Imprime os dados do time com nome, conferência e lista de jogadores
+     * @param homeTeam
+     */
     public static void printTeamData(Team homeTeam) {
         System.out.println(("-").repeat(55));
         System.out.printf("Team name: %s, Conference: %s%n", homeTeam.name, homeTeam.conference);
@@ -46,6 +86,10 @@ public class Team {
         }
     }
 
+    /**
+     * Converte o objeto time para string no formato Team name: Conference:
+     * @return String contendo o nome do time e a conferência
+     */
     @Override
     public String toString() {
         return "Team name: " + name +
