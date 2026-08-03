@@ -110,6 +110,18 @@ public class Game {
 
     // Helper method to add player stats safely
 
+    // TODO
+    public void calculateTeamScore(Team team){
+    }
+
+    /**
+     * Calculates the scores for both teams in a game
+     * It uses calculateTeamScore(Team team) method to compute the score based on PlayerGameStats. This method also determines and prints the scores of both teams.
+     */
+    public void teamsScore(){
+
+    }
+
     /**
      * Adicionar as estatísticas de um jogador
      * @param stats
@@ -154,6 +166,40 @@ public class Game {
 
         //System.out.print("Away Team:");
         Team.printTeamData(awayTeam);
+    }
+
+    /**
+     * Generates a summary of the game, including which team won and the final score.
+     * It determines the winner based on the team scores
+     * and returns the summary as a string.
+     */
+    public void gameSummary(){
+        System.out.println("Game #" + gameNumber);
+        //Game # 1:
+        //Team Los Angeles Lakers score: 86
+        System.out.println("Team" + homeTeam.getName() + " score: "+);
+        System.out.println("Team" + awayTeam.getName() + " score: "+);
+
+    }
+
+    /**
+     * Returns a map with the highest scorers from both teams in the game.
+     * It uses highestTeamScorer(Team team) to find the highest scorer for each team
+     * and adds them to the map, which is then returned.
+     */
+    public map<Player player, int score> highestScorer(){
+
+    }
+
+    /**
+     * Finds the player with the highest score on a given team based on PlayerGameStats.
+     * It iterates through the stats
+     * and returns the player with the highest score.
+     * @param team
+     * @return player
+     */
+    public Player highestTeamScorer(Team team){
+
     }
 
     /**

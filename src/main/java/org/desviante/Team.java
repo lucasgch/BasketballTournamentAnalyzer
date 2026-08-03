@@ -65,6 +65,16 @@ public class Team {
         return teams;
     }
 
+
+
+    /**
+     * Retorna uma lista de jogadores do time
+     * @return Lista de Jogadores
+     */
+    public List<Player> getPlayers() {
+        return players;
+    }
+
     /**
      * Adiciona um jogador ao time
      * @param player
