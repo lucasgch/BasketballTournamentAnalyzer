@@ -5,6 +5,7 @@ package org.desviante;
 import java.util.Arrays;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Map;
 
 import static org.desviante.PlayerGameStats.populatePlayerGameStats;
 
@@ -182,11 +183,13 @@ public class Main {
     public static void printGameResults(List<Game> games){
         for (Game game : games) {
             game.gameSummary();
-            // TODO
-            game.highestScorer();
+            System.out.println("-".repeat(56));
+            Map<Team, Player> highestScorerMap = game.highestScorer();
+            highestScorerMap.forEach((team, player) -> {
+                System.out.println("Team: "+ team.getName() + ", Highest Scorer: " + player.getName());});
+            System.out.println("-".repeat(56));
         }
     }
-
 
 }
 

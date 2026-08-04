@@ -86,4 +86,9 @@ public class Player {
     public int hashCode() {
         return Objects.hash(name, number);
     }
+
+    @Override
+    public String toString() {
+        return name;
+    }
 }

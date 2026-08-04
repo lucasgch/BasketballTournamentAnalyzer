@@ -1,9 +1,6 @@
 package org.desviante;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 /**
  * Classe que define um jogo de basquete
@@ -236,10 +233,13 @@ public class Game {
      * It uses highestTeamScorer(Team team) to find the highest scorer for each team
      * and adds them to the map, which is then returned.
      */
-    public map<Player player, int score> highestScorer(){
+    public Map<Team, Player> highestScorer(){
+        Map<Team, Player> mapHighestScorer = new HashMap<>();
+        mapHighestScorer.put(this.homeTeam, highestTeamScorer(this.homeTeam));
+        mapHighestScorer.put(this.awayTeam, highestTeamScorer(this.awayTeam));
 
+        return mapHighestScorer;
     }
-
 
     /**
      * Converte o objeto Jogo para o formato string
