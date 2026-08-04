@@ -33,6 +33,8 @@ public class Game {
      * Lista de estatísticas dos jogadores
      */
     private final List<PlayerGameStats> playerGameStats;
+    int homeTeamScore;
+    int awayTeamScore;
 
     /**
      * Construtor que cria um jogo a partir dos dados
@@ -108,18 +110,47 @@ public class Game {
         return Collections.unmodifiableList(playerGameStats);
     }
 
-    // Helper method to add player stats safely
+    /**
+     * Calcula a pontuação do time percorrendo as estatísticas dos jogadores do time e somando os resultados
+     * @param team time
+     * @return pontuação caclulada como inteiro
+     */
+    public int calculateTeamScore(Team team){
 
-    // TODO
-    public void calculateTeamScore(Team team){
+        int teamScore = 0;
+        for(PlayerGameStats playerStat : this.playerGameStats){
+            if (team.getPlayers().contains(playerStat.getPlayer()) ) {
+                teamScore+= playerStat.getPlayerGameScore();
+            }
+        }
+
+        return teamScore;
+    }
+
+    public void setHomeTeamScore(int score) {
+        this.homeTeamScore = score;
+    }
+
+    public void setAwayTeamScore(int score) {
+        this.awayTeamScore = score;
+    }
+
+    public int getHomeTeamScore() {
+        return homeTeamScore;
+    }
+
+    public int getAwayTeamScore() {
+        return awayTeamScore;
     }
 
     /**
      * Calculates the scores for both teams in a game
-     * It uses calculateTeamScore(Team team) method to compute the score based on PlayerGameStats. This method also determines and prints the scores of both teams.
+     * It uses calculateTeamScore(Team team) method to compute the score based on PlayerGameStats.
+     * This method also determines and prints the scores of both teams.
      */
     public void teamsScore(){
-
+        setHomeTeamScore(calculateTeamScore(this.homeTeam));
+        setAwayTeamScore(calculateTeamScore(this.awayTeam));
     }
 
     /**
@@ -177,9 +208,8 @@ public class Game {
         System.out.println("Game #" + gameNumber);
         //Game # 1:
         //Team Los Angeles Lakers score: 86
-        System.out.println("Team" + homeTeam.getName() + " score: "+);
-        System.out.println("Team" + awayTeam.getName() + " score: "+);
-
+        System.out.println("Team " + homeTeam.getName() + " score: "+getHomeTeamScore());
+        System.out.println("Team " + awayTeam.getName() + " score: "+getAwayTeamScore());
     }
 
     /**
@@ -187,9 +217,9 @@ public class Game {
      * It uses highestTeamScorer(Team team) to find the highest scorer for each team
      * and adds them to the map, which is then returned.
      */
-    public map<Player player, int score> highestScorer(){
+    //public map<Player player, int score> highestScorer(){
 
-    }
+    //}
 
     /**
      * Finds the player with the highest score on a given team based on PlayerGameStats.
@@ -198,9 +228,9 @@ public class Game {
      * @param team
      * @return player
      */
-    public Player highestTeamScorer(Team team){
+    //public Player highestTeamScorer(Team team){
 
-    }
+    //}
 
     /**
      * Converte o objeto Jogo para o formato string

@@ -67,6 +67,18 @@ public class PlayerGameStats {
         return player;
     }
 
+    public int getFieldGoals() {
+        return fieldGoals;
+    }
+
+    public int getThreePoints() {
+        return threePoints;
+    }
+
+    public int getFreeThrows() {
+        return freeThrows;
+    }
+
     public int getOffensiveRebounds() {
         return offensiveRebounds;
     }

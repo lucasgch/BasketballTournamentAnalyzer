@@ -18,7 +18,7 @@ public class Main {
         // It calls createGame() to create and return a list of games.
         List<Game> games = createGame();
 
-        printGameResults();
+        printGameResults(games);
         // Print teams data
         //printTeamsData(teams);
 
@@ -182,8 +182,8 @@ public class Main {
     }
 
     // Method to print teams data
-    public static void printTeamsData(List<Team> Main.teams) {
-        for (Team team : Main.teams) {
+    public static void printTeamsData(List<Team> teams) {
+        for (Team team : teams) {
             System.out.println("-".repeat(56));
             System.out.println(team.toString());
             System.out.println("-".repeat(56));
@@ -200,7 +200,7 @@ public class Main {
     public static void printGameResults(List<Game> games){
         for (Game game : games) {
             game.gameSummary();
-
+            //game.highestScorer();
         }
     }
 
