@@ -182,7 +182,8 @@ public class Main {
     public static void printGameResults(List<Game> games){
         for (Game game : games) {
             game.gameSummary();
-            //game.highestScorer();
+            // TODO
+            game.highestScorer();
         }
     }
 

@@ -213,24 +213,33 @@ public class Game {
     }
 
     /**
+     * Encontra o maior pontuador do time
+     * @param team
+     * @return highestScorerPlayer
+     */
+    public Player highestTeamScorer(Team team){
+        int biggestScore = Integer.MIN_VALUE;
+        Player highestScorerPlayer = null;
+        for(PlayerGameStats playerStat : this.playerGameStats){
+            if (team.getPlayers().contains(playerStat.getPlayer())){
+                if (playerStat.getPlayerGameScore() > biggestScore) {
+                    biggestScore = playerStat.getPlayerGameScore();
+                    highestScorerPlayer = playerStat.getPlayer();
+                }
+            }
+        }
+        return highestScorerPlayer;
+    }
+
+    /**
      * Returns a map with the highest scorers from both teams in the game.
      * It uses highestTeamScorer(Team team) to find the highest scorer for each team
      * and adds them to the map, which is then returned.
      */
-    //public map<Player player, int score> highestScorer(){
+    public map<Player player, int score> highestScorer(){
 
-    //}
+    }
 
-    /**
-     * Finds the player with the highest score on a given team based on PlayerGameStats.
-     * It iterates through the stats
-     * and returns the player with the highest score.
-     * @param team
-     * @return player
-     */
-    //public Player highestTeamScorer(Team team){
-
-    //}
 
     /**
      * Converte o objeto Jogo para o formato string
