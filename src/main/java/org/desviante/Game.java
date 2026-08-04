@@ -208,8 +208,8 @@ public class Game {
         System.out.println("Game #" + gameNumber);
         //Game # 1:
         //Team Los Angeles Lakers score: 86
-        System.out.println("Team " + homeTeam.getName() + " score: "+getHomeTeamScore());
-        System.out.println("Team " + awayTeam.getName() + " score: "+getAwayTeamScore());
+        System.out.println("Team " + homeTeam.getName() + " score: "+calculateTeamScore(homeTeam));
+        System.out.println("Team " + awayTeam.getName() + " score: "+calculateTeamScore(awayTeam));
     }
 
     /**

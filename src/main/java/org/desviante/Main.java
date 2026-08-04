@@ -133,14 +133,12 @@ public class Main {
         teams = Team.populateTeams(teamData);
 
         // Create players for each team
-        List<Player> player = createPlayers(teams);
+        createPlayers();
 
         return teams;  // Return the list of teams
     }
 
-    public static List<Player> createPlayers() {
-
-        List<Player> players = new ArrayList<>();
+    public static void createPlayers() {
 
         // Data for creating players
         String[][] playerData = {
@@ -155,30 +153,14 @@ public class Main {
                 {"1", "Horace Grant", "9"},
                 {"1", "Derek Fisher", "10"}
         };
-        return players;
-    }
 
-    public static List<Player> createPlayers(List<Team> teams) {
-
-            for (Team team: Main.teams){
-                List<Player> players = new ArrayList<>();
-
-                // Data for creating players
-                String[][] playerData = {
-                        {"0", "Allen Iverson", "1"},
-                        {"0", "Aaron McKie", "2"},
-                        {"0", "Dikembe Mutombo", "3"},
-                        {"0", "Tyrone Hill", "4"},
-                        {"0", "Jumaine Jones", "5"},
-                        {"1", "Kobe Bryant", "6"},
-                        {"1", "Shaquille O'Neal", "7"},
-                        {"1", "Rick Fox", "8"},
-                        {"1", "Horace Grant", "9"},
-                        {"1", "Derek Fisher", "10"}
-                };
+        for (int i = 0; i < teams.size(); i++) {
+            Team team = teams.get(i);
+            List<Player> teamPlayers = Player.populatePlayer(playerData, i);
+            for (Player player : teamPlayers) {
+                team.addPlayer(player);
             }
-
-        return List.of();
+        }
     }
 
     // Method to print teams data
