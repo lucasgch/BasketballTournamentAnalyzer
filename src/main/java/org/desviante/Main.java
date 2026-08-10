@@ -20,10 +20,8 @@ public class Main {
         List<Game> games = createGame();
 
         printGameResults(games);
-        // Print teams data
-        //printTeamsData(teams);
 
-        //printGames(games);
+        Tournament tournament = new  Tournament("Philadelphia 76ers at Los Angeles Lakers", "2001");
 
 
 
