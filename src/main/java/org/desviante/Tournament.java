@@ -7,23 +7,23 @@ public class Tournament {
     /**
      * The name of the tournament
      */
-    String name;
+    private String name;
     /**
      * Represents the tournament’s season, typically the year it takes place
      */
-    String season;
+    private String season;
     /**
      * MVP: The most valuable player of the tournament
      */
-    Player mvp;
+    private Player mvp;
     /**
      * A list of teams participating in the tournament
      */
-    ArrayList<Team> teams;
+    private ArrayList<Team> teams;
     /**
      * A list of games played during the tournament
      */
-    static ArrayList<Game> games;
+    private ArrayList<Game> games;
 
     public Tournament(String name, String season) {
         this.name = name;
@@ -49,46 +49,49 @@ public class Tournament {
         games.add(game);
     }
 
-    public static List<Game> getGames() {
+    public List<Game> getGames() {
         return games;
+    }
+
+    public String getSeason() {
+        return season;
+    }
+
+    public Player getMvp() {
+        return mvp;
     }
 
     public void setMvp(Player player) {
         this.mvp = player;
     }
 
-    public Player highestScorer(List<Game> games2) {
-        Map<Player, Integer> playerScores = new HashMap<>();
-
-        // Aggregate scores for all players
-        for (Game game1 : games2) {
-            for (PlayerGameStats stats : game1.getPlayerGameStats()) {
-                Player player = stats.getPlayer();
-                int playerScore = stats.getPlayerGameScore();
-
-                if (playerScores.containsKey(player)) {
-                    playerScore += playerScores.get(player);
+    public Player highestScorer() {
+        if (mvp == null) {
+            Map<Player, Integer> playerScores = new HashMap<>();
+            for (Game game : games) {
+                for (PlayerGameStats stats : game.getPlayerGameStats()) {
+                    playerScores.merge(stats.getPlayer(), stats.getPlayerGameScore(), Integer::sum);
                 }
-                playerScores.put(player, playerScore);
             }
-        }
-
-        // Find the player with the highest score
-        Player hScorer = null;
-        int highestScore = Integer.MIN_VALUE;
-        for (Map.Entry<Player, Integer> entry : playerScores.entrySet()) {
-            int value = entry.getValue();
-            if (value > highestScore) {
-                highestScore = value;
-                hScorer = entry.getKey();
+            Player hScorer = null;
+            int highestScore = Integer.MIN_VALUE;
+            for (Map.Entry<Player, Integer> entry : playerScores.entrySet()) {
+                if (entry.getValue() > highestScore) {
+                    highestScore = entry.getValue();
+                    hScorer = entry.getKey();
+                }
             }
+            setMvp(hScorer);
         }
-        setMvp(hScorer);
-        return hScorer;
+        return mvp;
     }
 
+
     // Method to get MVP stats
-    public Map<String, String> mvpStats(ArrayList<Game> games) {
+    public Map<String, String> mvpStats() {
+        if (mvp == null) {
+            highestScorer();
+        }
         Map<String, String> stats = new LinkedHashMap<>();
         int totalGamesPlayed = 0;
         int totalPointsScored = 0;
@@ -112,7 +115,6 @@ public class Tournament {
             }
         }
 
-        System.out.println("-------------------------------------------------------");
         stats.put("MVP Player", playerName);
         stats.put("Total Rebounds", String.valueOf(totalRebounds));
         stats.put("Total Assists", String.valueOf(totalAssists));
@@ -120,5 +122,60 @@ public class Tournament {
         stats.put("Total Points Scored", String.valueOf(totalPointsScored));
 
         return stats;
+    }
+
+    public Team getTournamentWinner() {
+        // Create a map to count wins for each team
+        Map<Team, Integer> teamWins = new HashMap<>();
+
+        // Iterate over games to count wins
+        for (Game game : games) {
+            Team winningTeam = game.getWinningTeam();
+            if (winningTeam != null) {
+                teamWins.put(winningTeam, teamWins.getOrDefault(winningTeam, 0) + 1);
+            }
+        }
+
+        // Find the team with the most wins
+        Team potentialWinner = null;
+        int maxWins = 0;
+        boolean draw = false;
+
+        for (Map.Entry<Team, Integer> entry : teamWins.entrySet()) {
+            if (entry.getValue() > maxWins) {
+                maxWins = entry.getValue();
+                potentialWinner = entry.getKey();
+                draw = false; // reset the draw flag
+            } else if (entry.getValue() == maxWins) {
+                draw = true; // if multiple teams have the same maxWins
+            }
+        }
+
+        // If there's a draw, no clear winner, return null or some indication of a draw
+        if (draw) {
+            return null; // Represents a draw
+        }
+
+        return potentialWinner; // Returns the team with the most wins if no draw
+    }
+
+    public Map<String, String> calculateTournamentStats() {
+        Map<String, String> summary = new LinkedHashMap<>();
+
+        Team winner = getTournamentWinner();
+        summary.put("Tournament Winner", winner != null ? winner.getName() : "Draw");
+
+        Player scorer = highestScorer();
+        summary.put("Highest Scorer", scorer != null ? scorer.getName() : "N/A");
+
+        Map<String, String> mvpData = mvpStats();
+        summary.putAll(mvpData); // incorpora MVP, rebotes, assistências etc.
+
+        return summary;
+    }
+
+    @Override
+    public String toString() {
+        return "Tournament:" + name;
     }
 }

@@ -252,4 +252,14 @@ public class Game {
                 gameNumber, date, attendance, homeTeam, awayTeam
         );
     }
+
+    public Team getWinningTeam() {
+        if (homeTeamScore > awayTeamScore) {
+            return homeTeam;
+        } else if (awayTeamScore > homeTeamScore) {
+            return awayTeam;
+        } else {
+            return null;
+        }
+    }
 }

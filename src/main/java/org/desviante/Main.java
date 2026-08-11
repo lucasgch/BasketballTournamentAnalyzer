@@ -19,10 +19,16 @@ public class Main {
         // It calls createGame() to create and return a list of games.
         List<Game> games = createGame();
 
-        printGameResults(games);
+        //printGameResults(games);
 
         Tournament tournament = new  Tournament("Philadelphia 76ers at Los Angeles Lakers", "2001");
 
+        // Populate the tournament with games.
+        for (Game game: games){
+            tournament.addGame(game);
+        }
+
+        calculateTournamentStats(tournament);
 
 
     }
@@ -189,5 +195,16 @@ public class Main {
         }
     }
 
+    public static void calculateTournamentStats(Tournament tournament){
+        System.out.println(tournament.toString());
+        System.out.println("-------------------------------------------------------");
+        System.out.println();
+        System.out.println("---Game-wise Stats---");
+        printGameResults(tournament.getGames());
+        System.out.println();
+        Map<String, String> stats = tournament.calculateTournamentStats();
+        stats.forEach((key, value) -> System.out.println(key + ": " + value));
+        System.out.println("-------------------------------------------------------");
+    }
 }
 
