@@ -4,8 +4,15 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+/**
+ * Testes para os cálculos de placar e vencedor da classe Game.
+ */
 public class GameTest {
 
+    /**
+     * Verifica que o time com maior pontuação total, somando as
+     * estatísticas de todos os jogadores, é retornado como vencedor da partida.
+     */
     @Test
     void getWinningTeamReturnsTeamWithHigherScore() {
         // Arrange: monta o cenário
