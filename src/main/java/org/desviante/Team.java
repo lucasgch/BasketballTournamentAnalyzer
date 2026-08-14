@@ -85,16 +85,16 @@ public class Team {
     }
 
     /**
-     * Imprime os dados do time com nome, conferência e lista de jogadores
-     * @param homeTeam
+     * Retorna os dados do time com nome, conferência e lista de jogadores
+     * @return String contendo os dados do time
      */
-    public static void printTeamData(Team homeTeam) {
-        System.out.println(("-").repeat(55));
-        System.out.printf("Team name: %s, Conference: %s%n", homeTeam.name, homeTeam.conference);
-        System.out.println(("-").repeat(55));
-        for (Player player : homeTeam.players) {
-            player.printPlayer();
+    public String toSummary() {
+        StringBuilder summary = new StringBuilder();
+        summary.append(String.format("Team name: %s, Conference: %s%n", this.name, this.conference));
+        for (Player player : this.players) {
+            summary.append(player.toSummary()).append("\n");
         }
+        return summary.toString();
     }
 
     @Override

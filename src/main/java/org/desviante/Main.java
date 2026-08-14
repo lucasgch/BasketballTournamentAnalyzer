@@ -174,19 +174,19 @@ public class Main {
             System.out.println("-".repeat(56));
             System.out.println(team.toString());
             System.out.println("-".repeat(56));
-            team.getPlayers().forEach(Player::printPlayer);
+            team.getPlayers().forEach(player -> System.out.println(player.toSummary()));
         }
     }
 
     public static void printGames (List<Game> games){
         for (Game game : games) {
-            game.printGameDetails();
+            System.out.println(game.toDetailedSummary());
         }
     }
 
     public static void printGameResults(List<Game> games){
         for (Game game : games) {
-            game.gameSummary();
+            System.out.println(game.getScoreSummary());
             System.out.println("-".repeat(56));
             Map<Team, Player> highestScorerMap = game.highestScorer();
             highestScorerMap.forEach((team, player) -> {

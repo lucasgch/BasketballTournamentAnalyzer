@@ -71,8 +71,8 @@ public class Player {
     /**
      * Imprime um jogador com nome e número
      */
-    public void printPlayer() {
-        System.out.printf("--- Player Name: %s, Player Number: %d%n", this.getName(), this.getNumber());
+    public String toSummary() {
+        return String.format("--- Player Name: %s, Player Number: %d", this.getName(), this.getNumber());
     }
 
     @Override

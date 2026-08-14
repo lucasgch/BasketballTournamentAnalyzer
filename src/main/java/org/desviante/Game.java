@@ -187,18 +187,16 @@ public class Game {
     }
 
     /**
-     * Imprime os detalhes do Jogo
+     * Retorna uma string com os detalhes do Jogo
      */
-    public void printGameDetails() {
-        System.out.println("Game #" + gameNumber);
-        System.out.println("Date: " + date);
-        System.out.println("Attendance: " + attendance);
-
-        //System.out.print("Home Team:");
-        Team.printTeamData(homeTeam);
-
-        //System.out.print("Away Team:");
-        Team.printTeamData(awayTeam);
+    public String toDetailedSummary() {
+        StringBuilder summary = new StringBuilder();
+        summary.append("Game #").append(gameNumber).append("\n");
+        summary.append("Date: ").append(date).append("\n");
+        summary.append("Attendance: ").append(attendance).append("\n");
+        summary.append(homeTeam.toSummary());
+        summary.append(awayTeam.toSummary());
+        return summary.toString();
     }
 
     /**
@@ -206,12 +204,14 @@ public class Game {
      * It determines the winner based on the team scores
      * and returns the summary as a string.
      */
-    public void gameSummary(){
-        System.out.println("Game #" + gameNumber);
+    public String getScoreSummary(){
+        StringBuilder summary = new StringBuilder();
+        summary.append("Game #" + gameNumber).append("\n");
         //Game # 1:
         //Team Los Angeles Lakers score: 86
-        System.out.println("Team " + homeTeam.getName() + " score: "+calculateTeamScore(homeTeam));
-        System.out.println("Team " + awayTeam.getName() + " score: "+calculateTeamScore(awayTeam));
+        summary.append("Team " + homeTeam.getName() + " score: "+calculateTeamScore(homeTeam)).append("\n");
+        summary.append("Team " + awayTeam.getName() + " score: "+calculateTeamScore(awayTeam));
+        return summary.toString();
     }
 
     /**
