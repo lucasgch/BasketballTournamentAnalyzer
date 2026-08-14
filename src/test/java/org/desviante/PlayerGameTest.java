@@ -1,6 +1,8 @@
 package org.desviante;
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvFileSource;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -36,6 +38,21 @@ public class PlayerGameTest {
         PlayerGameStats stats = new PlayerGameStats(game, player, 0, 0, 0, 0, 0, 0);
 
         assertEquals(0, stats.getPlayerGameScore());
+    }
+
+    /**
+     * Verifica o cálculo de pontuação contra várias linhas de estatísticas reais,
+     * copiadas do box score do Jogo 1 das Finais da NBA de 2001 (Basketball Reference).
+     */
+    @ParameterizedTest(name = "{0} cestas + {1} de três + {2} lances livres = {3} pontos")
+    @CsvFileSource(resources = "/player-game-scores.csv", numLinesToSkip = 1)
+    void getPlayerGameScoreCalculatesFromVariousStatLines(int fieldGoals, int threePoints, int freeThrows, int expectedScore) {
+        Game game = new Game(1, "2001-06-06", new Team("Home", "Conference 1"), new Team("Away", "Conference 2"), 1000);
+        Player player = new Player("Test Player", 1);
+
+        PlayerGameStats stats = new PlayerGameStats(game, player, fieldGoals, threePoints, freeThrows, 0, 0, 0);
+
+        assertEquals(expectedScore, stats.getPlayerGameScore());
     }
 
 }

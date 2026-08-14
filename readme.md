@@ -110,4 +110,26 @@ java -cp bin Main
 
 ---
 
+## Testes
+
+O projeto conta com uma suíte de testes automatizados em **JUnit 5**, cobrindo os cálculos centrais do domínio:
+
+* **Testes unitários** (`GameTest`, `TeamTest`, `PlayerGameTest`, `TournamentTest`): validam o cálculo de placar e vencedor da partida, o contrato de `equals`/`hashCode` de `Team`, a pontuação individual (`PlayerGameStats`) e os cálculos agregados do torneio (maior pontuador e vencedor).
+* **Teste parametrizado via CSV** (`PlayerGameTest`): usa `@ParameterizedTest` + `@CsvFileSource` para validar `getPlayerGameScore()` contra várias linhas de estatísticas reais, carregadas de `src/test/resources/player-game-scores.csv`.
+
+Para executar todos os testes:
+```bash
+./gradlew test
+```
+
+---
+
+## Créditos e Fonte dos Dados
+
+As estatísticas utilizadas neste projeto — incluindo os dados de teste em `src/test/resources/player-game-scores.csv` — foram obtidas manualmente do [Basketball Reference](https://www.basketball-reference.com/), a partir do box score do [Jogo 1 das Finais da NBA de 2001](https://www.basketball-reference.com/boxscores/200106060LAL.html) (Philadelphia 76ers x Los Angeles Lakers, 6 de junho de 2001).
+
+Para estatísticas e dados mais detalhados, visite [basketball-reference.com](https://www.basketball-reference.com/). Consulte os [termos de uso](https://www.sports-reference.com/termsofuse.html) do Sports Reference para os usos permitidos dos dados.
+
+---
+
 *Projeto desenvolvido como desafio prático de Java e Programação Orientada a Objetos.*
