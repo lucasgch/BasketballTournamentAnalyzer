@@ -110,12 +110,12 @@ public class PlayerGameStats {
             PlayerGameStats playerStatsData = new PlayerGameStats(
                     game,
                     player,
-                    stats[0], // Points
-                    stats[1], // Assists
-                    stats[2], // Rebounds
-                    stats[3], // Steals
-                    stats[4], // Blocks
-                    stats[5] // Turnovers
+                    stats[0], // Field goals
+                    stats[1], // Three points
+                    stats[2], // Free throws
+                    stats[3], // Offensive rebounds
+                    stats[4], // Defensive rebounds
+                    stats[5] // Assists
             );
             playerGameStatsList.add(playerStatsData);
         }
