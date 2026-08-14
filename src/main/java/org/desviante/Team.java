@@ -19,7 +19,7 @@ public class Team {
     /**
      * Lista de jogadores do time
      */
-    List<Player> players;
+    private List<Player> players;
 
     /**
      * Construtor que cria um time com um Nome, Conferência e lista vazia de jogadores

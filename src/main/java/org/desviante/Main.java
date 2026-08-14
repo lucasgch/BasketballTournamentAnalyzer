@@ -174,7 +174,7 @@ public class Main {
             System.out.println("-".repeat(56));
             System.out.println(team.toString());
             System.out.println("-".repeat(56));
-            team.players.forEach(Player::printPlayer);
+            team.getPlayers().forEach(Player::printPlayer);
         }
     }
 

@@ -7,35 +7,35 @@ public class PlayerGameStats {
     /**
      * The game to which these statistics belong
      */
-    Game game;
+    private Game game;
     /**
      * The player with whom these statistics are associated
      */
-    Player player;
+    private Player player;
     /**
      * The total number of field goals a player scored in a game
      */
-    int fieldGoals;
+    private int fieldGoals;
     /**
      * The total number of three-point shots a player made in a game
      */
-    int threePoints;
+    private int threePoints;
     /**
      * The number of free throws a player scores in a game
      */
-    int freeThrows;
+    private int freeThrows;
     /**
      * The total count of offensive rebounds by a player in a game
      */
-    int offensiveRebounds;
+    private int offensiveRebounds;
     /**
      * The total count of defensive rebounds by a player in a game
      */
-    int defensiveRebounds;
+    private int defensiveRebounds;
     /**
      * The number of assists a player provides in a game
      */
-    int assists;
+    private int assists;
 
     /**
      * Construtor que cria as estatísticas de um jogador em um jogo
