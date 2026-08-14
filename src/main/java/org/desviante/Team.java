@@ -2,6 +2,7 @@ package org.desviante;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * Classe que define um time
@@ -94,6 +95,18 @@ public class Team {
         for (Player player : homeTeam.players) {
             player.printPlayer();
         }
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        Team team = (Team) o;
+        return Objects.equals(name, team.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name);
     }
 
     /**
