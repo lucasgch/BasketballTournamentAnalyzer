@@ -30,8 +30,13 @@ public class Game {
      * Lista de estatísticas dos jogadores
      */
     private final List<PlayerGameStats> playerGameStats;
-    int homeTeamScore;
-    int awayTeamScore;
+    /**
+     * Pontuação do time de casa
+     */
+    private int homeTeamScore;
+    /**
+     * Pontuação do time visitante
+     */private int awayTeamScore;
 
     /**
      * Construtor que cria um jogo a partir dos dados
