@@ -254,6 +254,7 @@ public class Game {
     }
 
     public Team getWinningTeam() {
+        teamsScore();
         if (homeTeamScore > awayTeamScore) {
             return homeTeam;
         } else if (awayTeamScore > homeTeamScore) {
